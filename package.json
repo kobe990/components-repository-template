@@ -1,9 +1,38 @@
 {
-  "name": "XXX components repository",
+  "name": "components-repository",
   "version": "1.0.0",
   "description": "",
   "repository": {
     "type": "git",
     "url": ""
+  },
+  "scripts": {
+    "build": "node ./build/build.js",
+    "hot-build": "node ./build/hot-build.js"
+  },
+  "browserslist": [
+    "iOS >= 7",
+    "Android >= 4.2",
+    "ie >= 9"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-object-rest-spread": "^7.3.1",
+    "@babel/plugin-transform-runtime": "^7.2.0",
+    "@babel/preset-env": "^7.3.1",
+    "autoprefixer": "^9.4.6",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.0",
+    "image2svg-loader": "^0.10.0",
+    "less": "^3.9.0",
+    "less-loader": "^4.1.0",
+    "postcss-loader": "^3.0.0",
+    "svg-sprite-loader": "^4.1.3",
+    "url-loader": "^1.1.2",
+    "vue": "^2.5.22",
+    "vue-loader": "^15.6.1",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.5.22",
+    "webpack": "^4.29.0"
   }
 }
