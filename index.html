@@ -1,0 +1,74 @@
+<!-- 调试组件使用的基本页面 -->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <meta name="wap-font-scale" content="no">
+    <meta name="HandheldFriendly" content="True">
+    <script>
+        (function (baseFontSize, fontscale) {
+            'use strict';
+
+            var _baseFontSize = baseFontSize || 100;
+            var _fontscale = fontscale || 1;
+
+            var win = window;
+            var doc = win.document;
+            var ua = navigator.userAgent;
+            var matches = ua.match(/Android[\S\s]+AppleWebkit\/(\d{3})/i);
+            var UCversion = ua.match(/U3\/((\d+|\.){5,})/i);
+            var isUCHd = UCversion && parseInt(UCversion[1].split('.').join(''), 10) >= 80;
+            var isIos = navigator.appVersion.match(/(iphone|ipad|ipod)/gi);
+            var dpr = win.devicePixelRatio || 1;
+            var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|Mobile/i.test(ua);
+            if (!isIos && !(matches && matches[1] > 534) && !isUCHd) {
+                // High resolution design doesn't apply to the case of low version of UC WebView runing in Andorid 4.3-.
+                dpr = 1;
+            }
+            var scale = 1 / dpr;
+            var _dprFromLayout = isMobile ? 2 : 1; // 设计稿DPR
+
+            var metaEl = doc.querySelector('meta[name="viewport"]');
+            if (!metaEl) {
+                metaEl = doc.createElement('meta');
+                metaEl.setAttribute('name', 'viewport');
+                doc.head.appendChild(metaEl);
+            }
+            metaEl.setAttribute('content', 'width=device-width,user-scalable=no,initial-scale=' + scale +
+                ',maximum-scale=' +
+                scale + ',minimum-scale=' + scale);
+            doc.documentElement.style.fontSize = _baseFontSize / _dprFromLayout * dpr * _fontscale + 'px';
+        })(100, 1);
+    </script>
+    <style>
+        html,
+        body {
+            height: 100%;
+            position: relative;
+        }
+
+        .p_ecp__simple {
+            display: flex;
+            /* min-width: 375px;
+            max-width: 600px; */
+            /* width: 750px; */
+            height: 100%;
+            margin: 0 auto;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="p_ecp__simple">
+        <div id="app"></div>
+    </div>
+    <script src="./dist/app.js"></script>
+</body>
+
+</html>
